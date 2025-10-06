@@ -1,3 +1,10 @@
 __pycache__
 .env
 .learn
+# Ignorar archivos grandes
+creditcard.csv
+*.pkl
+*.zip
+*.h5
+*.sav
+*.log
