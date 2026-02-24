@@ -1,112 +1,31 @@
-# Data Science Project Boilerplate
+# 💳 Credit Card Fraud Detection (Machine Learning)
 
-This boilerplate is designed to kickstart data science projects by providing a basic setup for database connections, data processing, and machine learning model development. It includes a structured folder organization for your datasets and a set of pre-defined Python packages necessary for most data science tasks.
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![Scikit-Learn](https://img.shields.io/badge/Library-Scikit--Learn-orange.svg)
+![Status](https://img.shields.io/badge/Status-Completed-success.svg)
 
-## Structure
+## 📌 Descripción del Proyecto
+Este proyecto aborda uno de los mayores retos en el sector tecnofinanciero (FinTech): la detección de transacciones fraudulentas. Utilizando un dataset de transacciones europeas, el objetivo es construir un modelo capaz de identificar el fraude con alta precisión en un entorno de **datos extremadamente desequilibrados** (donde solo el 0.17% de los datos son fraude).
 
-The project is organized as follows:
+## 🛠️ Tecnologías y Herramientas
+* **Lenguaje:** Python
+* **Librerías Principales:** Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn.
+* **Técnicas de ML:** Regresión Logística, Random Forest, SMOTE (Synthetic Minority Over-sampling Technique).
 
-- **`src/app.py`** → Main Python script where your project will run.
-- **`src/explore.ipynb`** → Notebook for exploration and testing. Once exploration is complete, migrate the clean code to `app.py`.
-- **`src/utils.py`** → Auxiliary functions, such as database connection.
-- **`requirements.txt`** → List of required Python packages.
-- **`models/`** → Will contain your SQLAlchemy model classes.
-- **`data/`** → Stores datasets at different stages:
-  - **`data/raw/`** → Raw data.
-  - **`data/interim/`** → Temporarily transformed data.
-  - **`data/processed/`** → Data ready for analysis.
+## 📈 Desafíos Técnicos
+1. **Desequilibrio de Clases:** Se implementaron técnicas de *Oversampling* (SMOTE) y *Undersampling* para evitar que el modelo ignore la clase minoritaria.
+2. **Feature Scaling:** Aplicación de `RobustScaler` en las columnas 'Amount' y 'Time' para manejar valores atípicos.
+3. **Métricas de Evaluación:** Dado el desequilibrio, el éxito no se midió con *Accuracy*, sino mediante **Precision-Recall AUC** y **F1-Score**.
 
+## 📊 Resultados obtenidos
+| Modelo | Precision | Recall | F1-Score |
+| :--- | :---: | :---: | :---: |
+| Regresión Logística | 0.88 | 0.62 | 0.73 |
+| **Random Forest (Final)** | **0.94** | **0.81** | **0.87** |
 
-## ⚡ Initial Setup in Codespaces (Recommended)
+> **Nota:** El modelo final logra detectar el 81% de los fraudes (Recall) manteniendo un margen muy bajo de falsas alarmas.
 
-No manual setup is required, as **Codespaces is automatically configured** with the predefined files created by the academy for you. Just follow these steps:
-
-1. **Wait for the environment to configure automatically**.
-   - All necessary packages and the database will install themselves.
-   - The automatically created `username` and `db_name` are in the **`.env`** file at the root of the project.
-2. **Once Codespaces is ready, you can start working immediately**.
-
-
-## 💻 Local Setup (Only if you can't use Codespaces)
-
-**Prerequisites**
-
-Make sure you have Python 3.11+ installed on your machine. You will also need pip to install the Python packages.
-
-**Installation**
-
-Clone the project repository to your local machine.
-
-Navigate to the project directory and install the required Python packages:
-
-```bash
-pip install -r requirements.txt
-```
-
-**Create a database (if necessary)**
-
-Create a new database within the Postgres engine by customizing and executing the following command:
-
-```bash
-$ psql -U postgres -c "DO \$\$ BEGIN 
-    CREATE USER my_user WITH PASSWORD 'my_password'; 
-    CREATE DATABASE my_database OWNER my_user; 
-END \$\$;"
-```
-Connect to the Postgres engine to use your database, manipulate tables, and data:
-
-```bash
-$ psql -U my_user -d my_database
-```
-
-Once inside PSQL, you can create tables, run queries, insert, update, or delete data, and much more!
-
-**Environment Variables**
-
-Create a .env file in the root directory of the project to store your environment variables, such as your database connection string:
-
-```makefile
-DATABASE_URL="postgresql://<USER>:<PASSWORD>@<HOST>:<PORT>/<DB_NAME>"
-
-#example
-DATABASE_URL="postgresql://my_user:my_password@localhost:5432/my_database"
-```
-
-## Running the Application
-
-To run the application, execute the app.py script from the root directory of the project:
-
-```bash
-python src/app.py
-```
-
-## Adding Models
-
-To add SQLAlchemy model classes, create new Python script files within the models/ directory. These classes should be defined according to your database schema.
-
-Example model definition (`models/example_model.py`):
-
-```py
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import String
-from sqlalchemy.orm import Mapped, mapped_column
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    __tablename__ = 'example_table'
-    id: Mapped[int] = mapped_column(primary_key=True)
-    username: Mapped[str] = mapped_column(unique=True)
-```
-
-## Working with Data
-
-You can place your raw datasets in the data/raw directory, intermediate datasets in data/interim, and processed datasets ready for analysis in data/processed.
-
-To process data, you can modify the app.py script to include your data processing steps, using pandas for data manipulation and analysis.
-
-## Contributors
-
-This template was built as part of the [Data Science and Machine Learning Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning) by 4Geeks Academy by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Learn more about [4Geeks Academy BootCamp programs](https://4geeksacademy.com/us/programs) here.
-
-Other templates and resources like this can be found on the school's GitHub page.
+## 🚀 Cómo ejecutar el proyecto
+1. Clona el repositorio:
+   ```bash
+   git clone [https://github.com/brayanv21/credit-card-fraud-detection-ml.git](https://github.com/brayanv21/credit-card-fraud-detection-ml.git)
