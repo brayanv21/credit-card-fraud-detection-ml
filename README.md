@@ -1,31 +1,34 @@
 # 💳 Credit Card Fraud Detection (Machine Learning)
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![XGBoost](https://img.shields.io/badge/Library-XGBoost-green.svg)
 ![Scikit-Learn](https://img.shields.io/badge/Library-Scikit--Learn-orange.svg)
-![Status](https://img.shields.io/badge/Status-Completed-success.svg)
 
 ## 📌 Descripción del Proyecto
-Este proyecto aborda uno de los mayores retos en el sector tecnofinanciero (FinTech): la detección de transacciones fraudulentas. Utilizando un dataset de transacciones europeas, el objetivo es construir un modelo capaz de identificar el fraude con alta precisión en un entorno de **datos extremadamente desequilibrados** (donde solo el 0.17% de los datos son fraude).
+Este proyecto desarrolla un sistema de detección de fraudes en transacciones de tarjetas de crédito utilizando **XGBoost** y otras técnicas de Machine Learning. El desafío principal es el **desequilibrio extremo de las clases**, donde las transacciones fraudulentas representan apenas el 0.17% del total.
 
-## 🛠️ Tecnologías y Herramientas
+## 🛠️ Stack Tecnológico
 * **Lenguaje:** Python
-* **Librerías Principales:** Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn.
-* **Técnicas de ML:** Regresión Logística, Random Forest, SMOTE (Synthetic Minority Over-sampling Technique).
+* **Algoritmos:** XGBoost, Random Forest, Regresión Logística.
+* **Procesamiento:** Scikit-Learn, Pandas, NumPy.
+* **Manejo de Desequilibrio:** SMOTE (Synthetic Minority Over-sampling Technique).
 
-## 📈 Desafíos Técnicos
-1. **Desequilibrio de Clases:** Se implementaron técnicas de *Oversampling* (SMOTE) y *Undersampling* para evitar que el modelo ignore la clase minoritaria.
-2. **Feature Scaling:** Aplicación de `RobustScaler` en las columnas 'Amount' y 'Time' para manejar valores atípicos.
-3. **Métricas de Evaluación:** Dado el desequilibrio, el éxito no se midió con *Accuracy*, sino mediante **Precision-Recall AUC** y **F1-Score**.
+## 📈 Metodología y Estrategia
+Para maximizar la detección de fraude, se aplicó la siguiente estrategia técnica:
+1. **Escalado Robusto:** Uso de `RobustScaler` para las variables de tiempo y monto, minimizando el impacto de valores atípicos (outliers).
+2. **Optimización de Balanceo:** Implementación de **SMOTE** para generar ejemplos sintéticos de la clase minoritaria (fraude).
+3. **Métricas Críticas:** Se optimizó el modelo basándose en **AUPRC (Area Under the Precision-Recall Curve)** y **F1-Score**, garantizando que el modelo no solo sea preciso, sino que detecte la mayor cantidad de fraudes posible.
 
-## 📊 Resultados obtenidos
+## 📊 Comparativa de Modelos
 | Modelo | Precision | Recall | F1-Score |
 | :--- | :---: | :---: | :---: |
 | Regresión Logística | 0.88 | 0.62 | 0.73 |
-| **Random Forest (Final)** | **0.94** | **0.81** | **0.87** |
+| Random Forest | 0.94 | 0.81 | 0.87 |
+| **XGBoost (Final)** | **0.96** | **0.84** | **0.90** |
 
-> **Nota:** El modelo final logra detectar el 81% de los fraudes (Recall) manteniendo un margen muy bajo de falsas alarmas.
+> **Conclusión:** **XGBoost** demostró ser el modelo más robusto, logrando un balance superior entre la precisión y la capacidad de detección (Recall), reduciendo significativamente los falsos negativos.
 
-## 🚀 Cómo ejecutar el proyecto
-1. Clona el repositorio:
+## 🚀 Instalación y Uso
+1. Clona este repositorio:
    ```bash
    git clone [https://github.com/brayanv21/credit-card-fraud-detection-ml.git](https://github.com/brayanv21/credit-card-fraud-detection-ml.git)
